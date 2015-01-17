@@ -43,3 +43,11 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test, :development do
+  gem 'minitest'
+  gem "rspec-rails", "2.13.1"
+end
+
+group :test do
+  gem "capybara", "2.1.0"
+end
