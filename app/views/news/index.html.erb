@@ -1,0 +1,12 @@
+<h1>Frontpage News Items</h1>
+<%= link_to("Add News Item", new_news_path) %>
+
+  <% @news.each do |item| %>
+    <p>
+      <%= link_to("Edit", edit_news_path(item.id)) %> |
+      <%= link_to("Delete", news_path(item), method: :delete, data: { confirm: 'Are you sure you want to DELETE this news item?'}) %><br/>
+      Created at: <%= item.created_at.to_s(:long) %><br/>
+      <strong><%= item.title %></strong></br>
+      <%= item.body %>
+    </p>
+  <% end %>
