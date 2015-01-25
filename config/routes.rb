@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   #get 'home/index'
 
   get "forms" => "forms#index"
+  resources :news do
+  end
 end
