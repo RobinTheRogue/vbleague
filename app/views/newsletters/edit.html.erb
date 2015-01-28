@@ -1,0 +1,19 @@
+<h2>Edit a Newsletter</h2>
+
+<%= form_for(@newsletter) do |n| %>
+    <p>
+      <%= n.label :title %><br/>
+      <%= n.text_field :title %>
+    </p>
+    <p>
+      <%= n.label :body %><br/>
+      <%= n.text_area :body, cols: 40, rows: 7 %>
+    </p>
+    <p>
+      <%= n.label :published_on %><br/>
+      <%= n.date_select :published_on %>
+    </p>
+    <p>
+      <%= n.submit %>
+    </p>
+<% end %>
