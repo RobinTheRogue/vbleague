@@ -29,7 +29,7 @@ development:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: vbleagueDBA
+  username: <%= ENV['DB_USER'] %>
 
   # The password associated with the postgres role (username).
   password: <%= ENV['DB_PASSWD'] %>
@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: vbleague_prod
-  username: vbleagueDBA
-  password: <%= ENV['VBLEAGUE_DATABASE_PASSWORD'] %>
+  username: <%= ENV['VBLEAGUE_PROD_USER'] %>
+  password: <%= ENV['VBLEAGUE_PROD_PASSWD'] %>
