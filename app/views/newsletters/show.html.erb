@@ -1,5 +1,5 @@
 <h2><%= @newsletter.title %></h2>
 <p>
   <small>published on <%= @newsletter.published_on.to_s %></small><br/>
-  <%= @newsletter.body %>
+  <%= simple_format(@newsletter.body) %>
 </p>
