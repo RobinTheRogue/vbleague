@@ -2,6 +2,10 @@
 
 <% @newsletter.each do |newsletter| %>
 <p>
+  <% if admin_signed_in? %>
+      <%= link_to("Edit", edit_newsletter_path(newsletter.id)) %> |
+      <%= link_to("Delete", newsletter_path(newsletter), method: :delete, data: { confirm: 'Are you sure you want to DELETE this news item?'}) %><br/>
+  <% end %>
   <strong><%= newsletter.title %></strong><br/>
   <small>published on <%= newsletter.published_on.to_s %></small><br/>
   <%= simple_format(newsletter.body) %>

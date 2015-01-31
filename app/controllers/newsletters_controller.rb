@@ -1,4 +1,5 @@
 class NewslettersController < ApplicationController
+  before_filter :authenticate_admin!, except: [ :index ]
 
   def index
     @newsletter = Newsletter.order(published_on: :desc)

@@ -3,3 +3,15 @@
     <h1><%= link_to 'CBHSVA', root_path %></h1>
   </div>
 </header>
+&nbsp;&nbsp;&nbsp;
+<% if user_signed_in? %>
+  Welcome <%= current_user.email %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    <br/>
+<% elsif admin_signed_in? %>
+    Welcome <%= current_admin.email %> (ADMIN) <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
+    <br/>
+<% else %>
+    <%= link_to 'Login', new_user_session_path %>
+    <br/>
+<% end %>

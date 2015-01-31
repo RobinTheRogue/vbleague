@@ -1,4 +1,6 @@
 class NewsController < ApplicationController
+  before_filter :authenticate_admin!
+
   def index
     @news = News.order(created_at: :desc)
   end
