@@ -1,1 +1,7 @@
-<h1>2015 Forms</h1>
+<h2>2015 Forms</h2>
+<ul>
+  <% Dir["public/forms/*.pdf"].each do |file| %>
+      <% displayname=File.basename("#{file}", ".pdf") %>
+    <li><%= link_to "#{displayname}", file[/\/.*/] %></li>
+  <% end %>
+</ul>
