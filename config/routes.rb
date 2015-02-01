@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
   devise_for :admins
   devise_for :users
   root  "home#index"
   #get 'home/index'
 
+  get "contacts" => 'contacts#index'
   get "forms" => "forms#index"
 
   resources :news do

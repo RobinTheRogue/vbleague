@@ -10,6 +10,9 @@
       <li class="forms">
         <%= link_to 'Forms', forms_path, class: 'button' %>
       </li>
+      <li class="contacts">
+        <%= link_to 'Contacts', contacts_path, class: 'button' %>
+      </li>
       <li>
         <% if admin_signed_in? %>
           <%= link_to 'News', news_index_path, class: 'button' %>
