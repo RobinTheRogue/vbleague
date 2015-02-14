@@ -3,6 +3,6 @@
     <p>
       <strong><%= item.title %></strong></br>
       <small><%= item.created_at.to_s(:long) %></small><br/>
-      <%= item.body %>
+      <%= raw(item.body) %>
     </p>
 <% end %>
