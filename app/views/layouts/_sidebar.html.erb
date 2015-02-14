@@ -11,13 +11,28 @@
         <%= link_to 'Forms', forms_path, class: 'button' %>
       </li>
       <li class="contacts">
-        <%= link_to 'Contacts', contacts_path, class: 'button' %>
+        <%= link_to 'Contacts', contactspage_path, class: 'button' %>
+      </li>
+      <% if current_admin.try(:active?) %>
+      <li>
+          <%= link_to 'News', news_index_path, class: 'button' %>
       </li>
       <li>
-        <% if admin_signed_in? %>
-          <%= link_to 'News', news_index_path, class: 'button' %>
-        <% end %>
+            <%= link_to 'Members', members_path, class: 'button' %>
       </li>
+      <li>
+        <%= link_to 'Locations', locations_path, class: 'button' %>
+      </li>
+      <li>
+        <%= link_to 'Teams', teams_path, class: 'button' %>
+      </li>
+      <li>
+        <%= link_to 'Levels', levels_path, class: 'button' %>
+      </li>
+      <li>
+        <%= link_to 'Divisions', divisions_path, class: 'button' %>
+      </li>
+      <% end %>
     </ul>
   </nav>
 </aside>

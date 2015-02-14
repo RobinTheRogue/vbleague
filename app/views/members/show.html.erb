@@ -1,0 +1,19 @@
+<h1>Member Information</h1>
+  <% if user_signed_in? || admin_signed_in? %>
+    <p>
+        <%= @member.first_name %>
+        <%= @member.last_name %>
+        (<%= @member.role %>)<br/>
+        phone: <%= @member.phone %>
+    </p>
+    <p>
+      Email: <%= @member.email %>
+    </p>
+    <p>
+      <%= @member.addresstype %> address: <br/>
+      street: <%= @member.street %><br/>
+      city: <%= @member.city %><br/>
+      state: <%= @member.state %><br/>
+      zip: <%= @member.zip %>
+    </p>
+  <% end %>

@@ -1,0 +1,6 @@
+<%= form_for(@level) do |lvl| %>
+    <%= lvl.label :name %>
+    <%= lvl.text_field :name, autofocus: true %><br/>
+
+    <%= lvl.submit %>
+<% end %>

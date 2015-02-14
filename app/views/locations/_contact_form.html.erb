@@ -1,0 +1,54 @@
+<% if !@contacts.empty? %>
+    <% @contacts.each do |con| %>
+        <p>
+          <% if current_admin.try(:active?) %>
+              <%= form_tag("/locations/#{params[:id]}/members", method: :delete) do %>
+                <%= hidden_field_tag 'member_id', con.id %>
+                (<%= con.role %>)
+                <%= con.first_name %>
+                <%= con.last_name %>
+                <button type="submit">
+                    <i class="fa fa-trash-o fa-fw"></i>
+                </button>
+              <% end %>
+          <%  end %>
+    </p>
+    <% end %>
+<% else %>
+  <p>This location has no contacts.</p>
+<% end %>
+<%= form_tag("/locations/#{params[:id]}/members", method: :post) do %>
+    <p>
+      <%= hidden_field :location_id, :value => params[:id] %>
+      Add a new contact:
+      <%= select_tag :member_id,
+         # options_from_collection_for_select(@members, :id, "#{:first_name :last_name}")
+      options_for_select(@members.map{|mbr| ["#{mbr.first_name} #{mbr.last_name} (#{mbr.role})", mbr.id]}) %>
+
+    </p>
+    <%= submit_tag "Add Contact" %>
+<% end %>
+<% if !@courts.empty? %>
+    <% court_no = @courts.count %>
+    <% @courts.each do |crt| %>
+        <p>
+          <% if current_admin.try(:active?) %>
+              <%= form_tag("/locations/#{params[:id]}/courts", method: :delete) do %>
+                  <%= hidden_field_tag 'court_id', crt.id %>
+                  <%= crt.name %>
+                  <button type="submit">
+                    <i class="fa fa-trash-o fa-fw"></i>
+                  </button>
+              <% end %>
+          <%  end %>
+        </p>
+    <% end %>
+<% else %>
+    <% court_no = 0 %>
+    <p>This location has no courts.</p>
+<% end %>
+
+<%= form_tag("/locations/#{params[:id]}/courts", method: :post) do %>
+    <%= hidden_field_tag :court_name, "Court #{court_no + 1}" %>
+    <%= submit_tag "Add a court" %>
+<% end %>

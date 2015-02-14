@@ -1,0 +1,18 @@
+<%= form_for(@team) do |team| %>
+    <p>
+      <%= team.label :name %>
+      <%= team.text_field :name, autofocus: true %><br/>
+      Level:
+        <%= team.select :level_id,
+         options_for_select(@level.map{|lvl| ["#{lvl.name}", lvl.id]}, team.object.level_id) %><br/>
+    Division:
+    <%= team.select :division_id,
+               options_for_select(@division.map{|dvn| ["#{dvn.name}", dvn.id]}, team.object.division_id) %><br/>
+    Location:
+    <%= team.select :location_id,
+           options_for_select(@location.map{|loc| ["#{loc.name} (#{loc.city})", loc.id]}, team.object.location_id) %><br/>
+      <%= team.label :season %>
+      <%= team.text_field :season %> (eg 2013)<br/>
+    </p>
+    <%= team.submit %>
+<% end %>

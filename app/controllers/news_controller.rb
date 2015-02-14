@@ -1,5 +1,7 @@
 class NewsController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter do
+    redirect_to root_path unless current_admin
+  end
 
   def index
     @news = News.order(created_at: :desc)

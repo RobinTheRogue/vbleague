@@ -1,0 +1,29 @@
+<%= form_for(@member) do |mbr| %>
+    *<%= mbr.label :first_name %>
+    <%= mbr.text_field :first_name, autofocus: true %><br/>
+    *<%= mbr.label :last_name %>
+    <%= mbr.text_field :last_name %><br/>
+    <%= mbr.label :phone %>
+    <%= mbr.telephone_field :phone %><br/><br/>
+    *<%= mbr.label :email %>
+    <%= mbr.text_field :email %> <br/><br/>
+  <%= mbr.label :street %>
+  <%= mbr.text_field :street %><br/>
+  <%= mbr.label :city %>
+  <%= mbr.text_field :city %><br/>
+  <%= mbr.label :state %>
+  <%= mbr.text_field :state %><br/>
+  <%= mbr.label :zip %>
+  <%= mbr.text_field :zip %><br/>
+  <%= mbr.label :addresstype %>
+  <%= mbr.text_field :addresstype %>
+
+    <p>
+      <%= mbr.label :role %>
+        <%= mbr.select :role,
+            options_for_select(@role, selected: @member.role) %>
+    </p>
+
+    <%= mbr.submit %>
+<% end %>
+<p>*required fields</p>

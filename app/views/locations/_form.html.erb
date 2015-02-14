@@ -1,0 +1,21 @@
+<%= form_for(@location) do |loc| %>
+    <p>
+      * <%= loc.label :name %>
+      <%= loc.text_field :name, autofocus: true %><br/>
+      * <%= loc.label :street %>
+      <%= loc.text_field :street %><br/>
+      * <%= loc.label :city %>
+      <%= loc.text_field :city %><br/>
+      * <%= loc.label :state %>
+      <%= loc.text_field :state, :value => "CO", :readonly => true %><br/>
+      * <%= loc.label :zip %>
+      <%= loc.text_field :zip %><br/>
+      <%= loc.label :url %>
+      <%= loc.text_field :url %><br/>
+      <%= loc.label :notes %>
+      <%= loc.text_area :notes %>
+    </p>
+    <%= loc.submit %>
+<% end %>
+<br/>
+* required fields

@@ -1,0 +1,86 @@
+<% if !@assigned_coaches.empty? %>
+    <% @assigned_coaches.each do |coach| %>
+        <p>
+          <% if current_admin.try(:active?) %>
+              <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
+                <%= hidden_field_tag 'member_id', coach.id %>
+                (<%= coach.role %>)
+                <%= coach.first_name %>
+                <%= coach.last_name %>
+                <button type="submit">
+                    <i class="fa fa-trash-o fa-fw"></i>
+                </button>
+              <% end %>
+          <%  end %>
+    </p>
+    <% end %>
+<% else %>
+  <p>This team has no coaches.</p>
+<% end %>
+<%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
+    <p>
+      Add a new coach:
+      <%= select_tag :member_id,
+         # options_from_collection_for_select(@members, :id, "#{:first_name :last_name}")
+      options_for_select(@coaches.map{|coach| ["#{coach.first_name} #{coach.last_name} (#{coach.role})", coach.id]}) %>
+
+    </p>
+    <%= submit_tag "Add Coach" %>
+<% end %>
+<% if !@assigned_advocates.empty? %>
+    <% @assigned_advocates.each do |advocate| %>
+        <p>
+          <% if current_admin.try(:active?) %>
+              <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
+                  <%= hidden_field_tag 'member_id', advocate.id %>
+                  (<%= advocate.role %>)
+                  <%= advocate.first_name %>
+                  <%= advocate.last_name %>
+                  <button type="submit">
+                    <i class="fa fa-trash-o fa-fw"></i>
+                  </button>
+              <% end %>
+          <%  end %>
+        </p>
+    <% end %>
+<% else %>
+    <p>This team has no advocates.</p>
+<% end %>
+<%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
+    <p>
+      Add a new advocate:
+      <%= select_tag :member_id,
+                     # options_from_collection_for_select(@members, :id, "#{:first_name :last_name}")
+                     options_for_select(@advocates.map{|advocate| ["#{advocate.first_name} #{advocate.last_name} (#{advocate.role})", advocate.id]}) %>
+
+    </p>
+    <%= submit_tag "Add Advocate" %>
+<% end %>
+<% if !@assigned_players.empty? %>
+    <% @assigned_players.each do |player| %>
+        <p>
+          <% if current_admin.try(:active?) %>
+              <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
+                  <%= hidden_field_tag 'member_id', player.id %>
+                  (<%= player.role %>)
+                  <%= player.first_name %>
+                  <%= player.last_name %>
+                  <button type="submit">
+                    <i class="fa fa-trash-o fa-fw"></i>
+                  </button>
+              <% end %>
+          <%  end %>
+        </p>
+    <% end %>
+<% else %>
+    <p>This team has no players.</p>
+<% end %>
+<%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
+    <p>
+      Add a new advocate:
+      <%= select_tag :member_id,
+                     options_for_select(@players.map{|player| ["#{player.first_name} #{player.last_name} (#{player.role})", player.id]}) %>
+
+    </p>
+    <%= submit_tag "Add Player" %>
+<% end %>

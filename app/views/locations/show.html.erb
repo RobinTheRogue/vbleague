@@ -1,0 +1,17 @@
+<h1>Location Information</h1>
+<% if current_admin.active? %>
+    <p>
+      <%= @location.name %>
+    </p>
+    <p>
+      address: <br/>
+      street: <%= @location.street %><br/>
+      city: <%= @location.city %><br/>
+      state: <%= @location.state %><br/>
+      zip: <%= @location.zip %>
+    </p>
+    <p>
+      notes: <br/>
+      <%= @location.notes %>
+    </p>
+<% end %>

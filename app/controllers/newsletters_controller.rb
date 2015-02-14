@@ -1,5 +1,8 @@
 class NewslettersController < ApplicationController
-  before_filter :authenticate_admin!, except: [ :index ]
+  # before_filter :authenticate_admin!, except: [ :index ]
+  before_filter :except => :index do
+    redirect_to root_path unless current_admin
+  end
 
   def index
     @newsletter = Newsletter.order(published_on: :desc)

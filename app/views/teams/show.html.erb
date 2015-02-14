@@ -1,0 +1,12 @@
+<h1>Team Basics</h1>
+<% if current_admin.active? %>
+    <p>
+      <%= @team.name %>
+    </p>
+    <p>
+      level: <%= @level.name %><br/>
+      division: <%= @division.name %><br/>
+      location: <%= @location.name %><br/>
+      season: <%= @team.season %>
+    </p>
+<% end %>
