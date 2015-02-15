@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.order(name: :desc)
+    @teams = Team.order(name: :asc)
   end
 
   def show
@@ -36,15 +36,24 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    @team.save
-    redirect_to @team
+    if @team.save
+      flash[:notice] = "Team successfully created!"
+      redirect_to teams_path
+    else
+      flash[:notice] = @team.errors.full_messages.to_sentence
+      redirect_to new_team_path
+    end
   end
 
   def update
     @team = Team.find(params[:id])
-    @team.update(team_params)
-    flash[:notice] = "Team successfully updated!"
-    redirect_to edit_team_path(params[:id])
+    if @team.update(team_params)
+      flash[:notice] = "Team successfully updated!"
+      redirect_to edit_team_path(params[:id])
+    else
+      flash[:notice] = @team.errors.full_messages.to_sentence
+      redirect_to edit_team_path(params[:id])
+    end
   end
 
   def destroy

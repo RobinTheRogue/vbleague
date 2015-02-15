@@ -4,9 +4,14 @@ class MembersTeamsController < ApplicationController
   end
 
   def create
-    MemberTeam.create({member_id: params[:member_id], team_id: params[:id]})
-    flash[:notice] = "Participant successfully added to team!"
-    redirect_to edit_team_path(params[:id])
+    @teammember = MemberTeam.new({member_id: params[:member_id], team_id: params[:id]})
+    if @teammember.save
+      flash[:notice] = "Participant successfully added to team!"
+      redirect_to edit_team_path(params[:id])
+    else
+      flash[:notice] = @teammember.errors.full_messages.to_sentence
+      redirect_to edit_team_path(params[:id])
+    end
   end
 
   def destroy

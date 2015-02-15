@@ -19,13 +19,15 @@
 <% end %>
 <%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
     <p>
-      Add a new coach:
+      Add
       <%= select_tag :member_id,
-         # options_from_collection_for_select(@members, :id, "#{:first_name :last_name}")
-      options_for_select(@coaches.map{|coach| ["#{coach.first_name} #{coach.last_name} (#{coach.role})", coach.id]}) %>
+        options_for_select(@coaches.map{|coach| ["#{coach.first_name} #{coach.last_name} (#{coach.role})", coach.id]}), :prompt => "Select a coach" %>
+      as a coach
+      <button type="submit">
+        <i class="fa fa-plus fa-fw"></i>
+      </button>
 
     </p>
-    <%= submit_tag "Add Coach" %>
 <% end %>
 <% if !@assigned_advocates.empty? %>
     <% @assigned_advocates.each do |advocate| %>
@@ -48,13 +50,15 @@
 <% end %>
 <%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
     <p>
-      Add a new advocate:
+      Add
       <%= select_tag :member_id,
-                     # options_from_collection_for_select(@members, :id, "#{:first_name :last_name}")
-                     options_for_select(@advocates.map{|advocate| ["#{advocate.first_name} #{advocate.last_name} (#{advocate.role})", advocate.id]}) %>
+                     options_for_select(@advocates.map{|advocate| ["#{advocate.first_name} #{advocate.last_name} (#{advocate.role})", advocate.id]}), :prompt => "Select an advocate" %>
+      as an advocate
+      <button type="submit">
+        <i class="fa fa-plus fa-fw"></i>
+      </button>
 
     </p>
-    <%= submit_tag "Add Advocate" %>
 <% end %>
 <% if !@assigned_players.empty? %>
     <% @assigned_players.each do |player| %>
@@ -77,10 +81,13 @@
 <% end %>
 <%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
     <p>
-      Add a new advocate:
+      Add
       <%= select_tag :member_id,
-                     options_for_select(@players.map{|player| ["#{player.first_name} #{player.last_name} (#{player.role})", player.id]}) %>
+                     options_for_select(@players.map{|player| ["#{player.first_name} #{player.last_name} (#{player.role})", player.id]}), :prompt => "Select a player" %>
+      as a player
+      <button type="submit">
+        <i class="fa fa-plus fa-fw"></i>
+      </button>
 
     </p>
-    <%= submit_tag "Add Player" %>
 <% end %>
