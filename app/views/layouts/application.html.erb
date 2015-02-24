@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>CBHSVA</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<%= render "layouts/header" %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div id="wrapper">
-  <%= render "layouts/flashes" %>
+    <title>CBHSVA</title>
 
-  <div id="container">
-    <section id="sidebar">
-      <%= render "layouts/sidebar" %>
-    </section>
-    <section id="content">
-      <%= yield %>
-    </section>
+    <%= stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <%= render "layouts/header" %> 
+
+  <div id="main-container" class="container">
+    <%= render "layouts/flashes" %>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= yield %>
+      </div>
+    </div>
   </div>
 
-</div>
-
-<%= render "layouts/footer" %>
-
-</body>
+  <%= render "layouts/footer" %>
+        <%= javascript_include_tag "application" %>
+  </body>
 </html>

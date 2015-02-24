@@ -9,9 +9,4 @@ class Location < ActiveRecord::Base
   validates_presence_of :state
   validates_presence_of :zip
 
-  def add_member(member_id)
-    LocationMember.create({location_id: id, member_id: member_id})
-  end
-
-  # TODO: add a DESTORY or REMOVE method
 end

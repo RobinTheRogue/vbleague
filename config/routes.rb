@@ -38,4 +38,8 @@ Rails.application.routes.draw do
 
   resources :teams do
   end
+
+  resources :matches do
+  end
+
 end

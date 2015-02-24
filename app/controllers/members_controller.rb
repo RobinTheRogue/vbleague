@@ -23,10 +23,10 @@ class MembersController < ApplicationController
         #  @user.update(email: user_email)
       #  end
       # end
-      flash[:notice] = "Member successfully created!"
+      flash[:success] = "Member successfully created!"
       redirect_to @member
     else
-      flash[:notice] = @member.errors.full_messages.to_sentence
+      flash[:danger] = @member.errors.full_messages.to_sentence
       redirect_to new_member_path
     end
   end
@@ -40,11 +40,11 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @role = ["User", "Coach", "Advocate", "Player", "Referee"]
     if @member.update(member_params)
-      flash[:notice] = "Member successfully updated!"
+      flash[:success] = "Member successfully updated!"
       redirect_to @member
     else
-      flash[:notice] = @member.errors.full_messages.to_sentence
-      render new_member_path
+      flash[:danger] = @member.errors.full_messages.to_sentence
+      redirect_to @member
     end
   end
 
@@ -56,6 +56,7 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     @member.destroy
+    flash[:danger] = "Member successfully deleted!"
     redirect_to @member
   end
 

@@ -1,46 +1,46 @@
-<% if !@assigned_coaches.empty? %>
+<div class="coaches">
+  <% if !@assigned_coaches.empty? %>
+      <h4>Coaches:</h4>
     <% @assigned_coaches.each do |coach| %>
-        <p>
-          <% if current_admin.try(:active?) %>
-              <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
-                <%= hidden_field_tag 'member_id', coach.id %>
-                (<%= coach.role %>)
-                <%= coach.first_name %>
-                <%= coach.last_name %>
-                <button type="submit">
-                    <i class="fa fa-trash-o fa-fw"></i>
-                </button>
-              <% end %>
-          <%  end %>
-    </p>
+      <% if current_admin.try(:active?) %>
+          <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
+            <%= hidden_field_tag 'member_id', coach.id %>
+              <button type="submit">
+                <i class="fa fa-trash-o fa-fw"></i>
+              </button>
+            <%= coach.first_name %>
+            <%= coach.last_name %>
+            (<%= coach.role %>)
+          <% end %>
+      <%  end %>
     <% end %>
 <% else %>
   <p>This team has no coaches.</p>
 <% end %>
 <%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
     <p>
-      Add
-      <%= select_tag :member_id,
-        options_for_select(@coaches.map{|coach| ["#{coach.first_name} #{coach.last_name} (#{coach.role})", coach.id]}), :prompt => "Select a coach" %>
-      as a coach
       <button type="submit">
         <i class="fa fa-plus fa-fw"></i>
       </button>
-
+      <%= select_tag :member_id,
+        options_for_select(@coaches.map{|coach| ["#{coach.last_name}, #{coach.first_name} (#{coach.role})", coach.id]}), :prompt => "Select a coach" %>
     </p>
 <% end %>
-<% if !@assigned_advocates.empty? %>
+</div>
+<div class="advocates">
+  <% if !@assigned_advocates.empty? %>
+    <h4>Advocates:</h4>
     <% @assigned_advocates.each do |advocate| %>
         <p>
           <% if current_admin.try(:active?) %>
               <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
                   <%= hidden_field_tag 'member_id', advocate.id %>
-                  (<%= advocate.role %>)
-                  <%= advocate.first_name %>
-                  <%= advocate.last_name %>
                   <button type="submit">
                     <i class="fa fa-trash-o fa-fw"></i>
                   </button>
+                  <%= advocate.first_name %>
+                  <%= advocate.last_name %>
+                  (<%= advocate.role %>)
               <% end %>
           <%  end %>
         </p>
@@ -50,28 +50,28 @@
 <% end %>
 <%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
     <p>
-      Add
-      <%= select_tag :member_id,
-                     options_for_select(@advocates.map{|advocate| ["#{advocate.first_name} #{advocate.last_name} (#{advocate.role})", advocate.id]}), :prompt => "Select an advocate" %>
-      as an advocate
       <button type="submit">
         <i class="fa fa-plus fa-fw"></i>
       </button>
-
+      <%= select_tag :member_id,
+         options_for_select(@advocates.map{|advocate| ["#{advocate.last_name}, #{advocate.first_name} (#{advocate.role})", advocate.id]}), :prompt => "Select an advocate" %>
     </p>
 <% end %>
+</div>
+<div class="players" %>
 <% if !@assigned_players.empty? %>
+      <h4>Players:</h4>
     <% @assigned_players.each do |player| %>
         <p>
           <% if current_admin.try(:active?) %>
               <%= form_tag("/teams/#{params[:id]}/members", method: :delete) do %>
                   <%= hidden_field_tag 'member_id', player.id %>
-                  (<%= player.role %>)
-                  <%= player.first_name %>
-                  <%= player.last_name %>
                   <button type="submit">
                     <i class="fa fa-trash-o fa-fw"></i>
                   </button>
+                  <%= player.first_name %>
+                  <%= player.last_name %>
+                  (<%= player.role %>)
               <% end %>
           <%  end %>
         </p>
@@ -81,13 +81,11 @@
 <% end %>
 <%= form_tag("/teams/#{params[:id]}/members", method: :post) do %>
     <p>
-      Add
-      <%= select_tag :member_id,
-                     options_for_select(@players.map{|player| ["#{player.first_name} #{player.last_name} (#{player.role})", player.id]}), :prompt => "Select a player" %>
-      as a player
       <button type="submit">
         <i class="fa fa-plus fa-fw"></i>
       </button>
-
+      <%= select_tag :member_id,
+         options_for_select(@players.map{|player| ["#{player.last_name}, #{player.first_name} (#{player.role})", player.id]}), :prompt => "Select a player" %>
     </p>
 <% end %>
+</div>

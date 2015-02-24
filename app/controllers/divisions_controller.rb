@@ -19,10 +19,10 @@ class DivisionsController < ApplicationController
     division_params = params.require(:division).permit(:name)
     @division = Division.new(division_params)
     if @division.save
-      flash[:notice] = "Division successfully added!"
+      flash[:success] = "Division successfully added!"
       redirect_to divisions_path
     else
-      flash[:notice] = @division.errors.full_messages.to_sentence
+      flash[:danger] = @division.errors.full_messages.to_sentence
       render new_division_path
     end
   end
@@ -35,10 +35,10 @@ class DivisionsController < ApplicationController
     @division = Division.find(params[:id])
     division_params = params.require(:division).permit(:name)
     if @division.update(division_params)
-      flash[:notice] = "Division successfully updated!"
+      flash[:success] = "Division successfully updated!"
       redirect_to divisions_path
     else
-      flash[:notice] = @division.errors.full_messages.to_sentence
+      flash[:danger] = @division.errors.full_messages.to_sentence
       render edit_division_path
     end
   end
@@ -46,7 +46,7 @@ class DivisionsController < ApplicationController
   def destroy
     @division = Division.find(params[:id])
     @division.destroy
-    flash[:notice] = "Division deleted!"
-    redirect_to @division
+    flash[:warning] = "Division deleted!"
+    redirect_to divisions_path
   end
 end

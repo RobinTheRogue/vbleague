@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
   def edit
     @location = Location.find(params[:id])
     @contacts = @location.members
-    @members = Member.where("(role = 'Coach') OR (role = 'Advocate')")
+    @members = Member.where("(role = 'Coach') OR (role = 'Advocate')").order(last_name: :asc)
     @courts = @location.courts
   end
 
@@ -25,10 +25,10 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
-      flash[:notice] = "Location successfully added!"
+      flash[:success] = "Location successfully added!"
       redirect_to locations_path
     else
-      flash[:notice] = @location.errors.full_messages.to_sentence
+      flash[:danger] = @location.errors.full_messages.to_sentence
       render new_location_path
     end
   end
@@ -36,10 +36,10 @@ class LocationsController < ApplicationController
   def update
     @location = Location.find(params[:id])
     if @location.update(location_params)
-      flash[:notice] = "Location successfully updated!"
+      flash[:success] = "Location successfully updated!"
       redirect_to edit_location_path(params[:id])
     else
-      flash[:notice] = @location.errors.full_messages.to_sentence
+      flash[:danger] = @location.errors.full_messages.to_sentence
       redirect_to edit_location_path(params[:id])
     end
   end
@@ -47,7 +47,7 @@ class LocationsController < ApplicationController
   def destroy
     @location = Location.find(params[:id])
     @location.destroy
-    flash[:notice] = "The location has been removed!"
+    flash[:danger] = "The location has been removed!"
     redirect_to @location
   end
 

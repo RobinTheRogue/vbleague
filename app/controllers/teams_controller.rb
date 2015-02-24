@@ -22,9 +22,9 @@ class TeamsController < ApplicationController
     @assigned_coaches = @team.members.where("(role = 'Coach')")
     @assigned_advocates = @team.members.where("(role = 'Advocate')")
     @assigned_players = @team.members.where("(role = 'Player')")
-    @coaches = Member.where("(role = 'Coach')")
-    @advocates = Member.where("(role = 'Advocate')")
-    @players = Member.where("(role = 'Player')")
+    @coaches = Member.where("(role = 'Coach')").order(last_name: :asc)
+    @advocates = Member.where("(role = 'Advocate')").order(last_name: :asc)
+    @players = Member.where("(role = 'Player')").order(last_name: :asc)
   end
 
   def new
@@ -37,10 +37,10 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
-      flash[:notice] = "Team successfully created!"
+      flash[:success] = "Team successfully created!"
       redirect_to teams_path
     else
-      flash[:notice] = @team.errors.full_messages.to_sentence
+      flash[:danger] = @team.errors.full_messages.to_sentence
       redirect_to new_team_path
     end
   end
@@ -48,10 +48,10 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash[:notice] = "Team successfully updated!"
+      flash[:success] = "Team successfully updated!"
       redirect_to edit_team_path(params[:id])
     else
-      flash[:notice] = @team.errors.full_messages.to_sentence
+      flash[:danger] = @team.errors.full_messages.to_sentence
       redirect_to edit_team_path(params[:id])
     end
   end

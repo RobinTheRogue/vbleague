@@ -18,8 +18,13 @@ class NewsController < ApplicationController
   def update
     @news = News.find(params[:id])
     news_params = params.require(:news).permit(:title, :body)
-    @news.update(news_params)
-    redirect_to @news
+    if @news.update(news_params)
+      flash[:success] = "News item successfully updated!"
+      redirect_to @news
+    else
+      flash[:danger] = @news.errors.full_messages.to_sentence
+      render @news
+    end
   end
 
   def new
@@ -29,13 +34,19 @@ class NewsController < ApplicationController
   def create
     news_params = params.require(:news).permit(:title, :body)
     @news = News.new(news_params)
-    @news.save
-    redirect_to @news
+    if @news.save
+      flash[:success] = "News item successfully created!"
+      redirect_to @news
+    else
+      flash[:danger] = @news.errors.full_messages.to_sentence
+      redirect_to @news
+    end
   end
 
   def destroy
     @news = News.find(params[:id])
     @news.destroy
+    flash[:danger] = "News item deteled!"
     redirect_to @news
   end
 end

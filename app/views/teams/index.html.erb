@@ -2,12 +2,10 @@
 <%= link_to(raw('<i class="fa fa-plus fa-fw"></i>'), new_team_path) %> Add a team
 <hr />
 <% @teams.each do |team| %>
-    <p>
       <% if current_admin.try(:active?) %>
           <%= link_to(raw('<i class="fa fa-pencil fa-fw"></i>'), edit_team_path(team.id)) %>
           <%= link_to(raw('<i class="fa fa-trash-o fa-fw"></i>'), team_path(team), method: :delete, data: { confirm: 'Are you sure you want to DELETE this team?'}) %>
       <% end %>
       <%= team.name %>
       ( <%= pluralize(team.members.where("(role = 'Coach')").count, 'coach') %>, <%= pluralize(team.members.where("(role = 'Advocate')").count, 'advocate') %>, <%= pluralize(team.members.where("(role = 'Player')").count, 'player') %> )<br/>
-    </p>
 <% end %>

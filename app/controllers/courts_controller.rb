@@ -5,7 +5,7 @@ class CourtsController < ApplicationController
 
   def create
     Court.create({name: params[:court_name], location_id: params[:id]})
-    flash[:notice] = "Court added to this location!"
+    flash[:success] = "Court added to this location!"
     redirect_to edit_location_path(params[:id])
   end
 
@@ -13,7 +13,7 @@ class CourtsController < ApplicationController
     location = Location.find(params[:id])
     court = location.courts.find(params[:court_id])
     location.courts.delete(court)
-    flash[:notice] = "Court removed from this location!"
+    flash[:danger] = "Court removed from this location!"
     redirect_to edit_location_path(params[:id])
   end
 

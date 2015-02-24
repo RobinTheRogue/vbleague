@@ -1,29 +1,152 @@
 <%= form_for(@member) do |mbr| %>
-    *<%= mbr.label :first_name %>
-    <%= mbr.text_field :first_name, autofocus: true %><br/>
-    *<%= mbr.label :last_name %>
-    <%= mbr.text_field :last_name %><br/>
-    <%= mbr.label :phone %>
-    <%= mbr.telephone_field :phone %><br/><br/>
-    *<%= mbr.label :email %>
-    <%= mbr.text_field :email %> <br/><br/>
-  <%= mbr.label :street %>
-  <%= mbr.text_field :street %><br/>
-  <%= mbr.label :city %>
-  <%= mbr.text_field :city %><br/>
-  <%= mbr.label :state %>
-  <%= mbr.text_field :state %><br/>
-  <%= mbr.label :zip %>
-  <%= mbr.text_field :zip %><br/>
-  <%= mbr.label :addresstype %>
-  <%= mbr.text_field :addresstype %>
+    <% if @member.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= pluralize(@member.errors.count, "error") %> prevented the member from being saved:</h3>
+          <ul>
+            <% @member.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-    <p>
-      <%= mbr.label :role %>
-        <%= mbr.select :role,
-            options_for_select(@role, selected: @member.role) %>
-    </p>
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :first_name, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :first_name, autofocus: true %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <%= mbr.submit %>
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :last_name, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :last_name %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :phone, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.telephone_field :phone %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :email, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.email_field :email %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :street, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :street %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :city, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :city %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :state, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :state %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :zip, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :zip %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :addresstype, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.text_field :addresstype %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-4">
+        <div class="row">
+          <div class="small-3 columns">
+            <%= mbr.label :role, class: 'right inline' %>
+          </div>
+          <div class="small-9 columns">
+            <%= mbr.select :role,
+                           options_for_select(@role, selected: @member.role) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="small-10 small-offset-2 columns">
+            <%= mbr.submit %>
+          </div>
+        </div>
+      </div>
+
 <% end %>
-<p>*required fields</p>

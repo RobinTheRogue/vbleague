@@ -13,7 +13,7 @@ ol {
 }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:link,
@@ -26,4 +26,13 @@ a:active {
   text-decoration: none;
   color: $secondary-link-color;
   background: $secondary-background-color;
+}
+
+
+.top-bar {
+  background: none repeat scroll 0 0 #FFD700;
+}
+
+.top-bar-section {
+  background-color: #FFD700;
 }

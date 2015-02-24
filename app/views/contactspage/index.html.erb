@@ -9,3 +9,18 @@
   TBA, 3A Representative - TBD<br/>
   Bill Cavanaugh, Officials Representative: (303)734-9922 <a href="mailto:BILL41CAVA@msn.com">BILL41CAVA@msn.com</a>
 </p>
+<% if !@teams.nil? %>
+  <hr/>
+  <%= raw("<h3>2015 Teams</h3>") %>
+    <% @teams.each do |team| %>
+        <p>
+        <strong><%= "#{team.name} (#{Location.find(team.location_id).city})" %></strong><br/>
+        <% team.members.where("(role = 'Coach')").each do |coach| %>
+          Coach: <%= " #{coach.first_name} #{coach.last_name} - #{coach.email}" %><br/>
+        <% end %>
+        <% team.members.where("(role = 'Advocate')").each do |advocate| %>
+          Advocate: <%= " #{advocate.first_name} #{advocate.last_name} - #{advocate.email}" %><br/>
+        <% end %>
+        </p>
+    <% end %>
+<% end %>

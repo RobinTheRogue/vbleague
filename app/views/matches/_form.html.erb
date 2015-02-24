@@ -1,0 +1,28 @@
+<%= form_for(@match) do |match| %>
+    <p>
+      <%= match.label :play_date %>
+      <%= match.text_field :play_date %><br/>
+        Court:
+    <%= match.select :court_id,
+               options_for_select(@courts.map{|crt| ["#{crt.location.name} - #{crt.name}", crt.id]}, match.object.court_id), :prompt => "Select a court" %><br/>
+    Start Time:
+    <%= match.select :start_time,
+           options_for_select(["6pm", "7pm", "8pm"], match.object.start_time), :prompt => "Select a start time" %><br/>
+      Home Team:
+      <%= match.select :home_team_id,
+                       options_for_select(@teams.map{|home| ["#{home.name}", home.id]}, match.object.home_team_id), :prompt => "Select a home team" %><br/>
+      Away Team:
+      <%= match.select :away_team_id,
+                       options_for_select(@teams.map{|away| ["#{away.name}", away.id]}, match.object.away_team_id), :prompt => "Select a away team" %><br/>
+      Score Table Team:
+      <%= match.select :score_team_id,
+                       options_for_select(@teams.map{|score| ["#{score.name}", score.id]}, match.object.score_team_id), :prompt => "Select a score table team" %><br/>
+      Up Referee:
+      <%= match.select :up_ref_id,
+                       options_for_select(@refs.map{|up_ref| ["#{up_ref.first_name} #{up_ref.last_name}", up_ref.id]}, match.object.up_ref_id), :prompt => "Select the up ref" %><br/>
+      Down Referee:
+      <%= match.select :dn_ref_id,
+                       options_for_select(@refs.map{|dn_ref| ["#{dn_ref.first_name} #{dn_ref.last_name}", dn_ref.id]}, match.object.dn_ref_id), :prompt => "Select the down ref" %><br/>
+    </p>
+    <%= match.submit %>
+<% end %>

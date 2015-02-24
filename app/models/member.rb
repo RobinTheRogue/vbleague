@@ -1,6 +1,7 @@
 class Member < ActiveRecord::Base
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :teams
+  belongs_to :match
 
   validates_presence_of :first_name
   validates_presence_of :last_name
