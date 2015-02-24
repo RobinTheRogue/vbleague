@@ -7,6 +7,7 @@ class Member < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_presence_of :role
 
   def add_location(location_id)
     LocationMember.create({location_id: location_id, member_id: id})
