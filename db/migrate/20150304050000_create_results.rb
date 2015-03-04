@@ -9,6 +9,7 @@ class CreateResults < ActiveRecord::Migration
       t.integer :game_four
       t.integer :game_five
       t.boolean :winner, default: false
+      t.boolean :divisionPlay, default: false
 
       t.timestamps null: false
     end
