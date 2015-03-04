@@ -4,7 +4,8 @@ class MatchesController < ApplicationController
   end
 
   def index
-    @matches = Match.order(play_date: :asc)
+    @matches = Match.order(start_time: :asc)
+    @match_dates = Match.select(:play_date).order(play_date: :asc).distinct
     @courts = Court.joins(:location)
     @teams = Team.all
     @refs = Member.where("(role = 'Referee')")
@@ -38,10 +39,10 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     if @match.save
-      flash[:notice] = "Match successfully created!"
+      flash[:success] = "Match successfully created!"
       redirect_to matches_path
     else
-      flash[:notice] = @match.errors.full_messages.to_sentence
+      flash[:danger] = @match.errors.full_messages.to_sentence
       redirect_to new_match_path
     end
   end
@@ -49,10 +50,10 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update(match_params)
-      flash[:notice] = "Match successfully updated!"
+      flash[:success] = "Match successfully updated!"
       redirect_to edit_match_path(params[:id])
     else
-      flash[:notice] = @match.errors.full_messages.to_sentence
+      flash[:danger] = @match.errors.full_messages.to_sentence
       redirect_to edit_match_path(params[:id])
     end
   end
@@ -60,6 +61,7 @@ class MatchesController < ApplicationController
   def destroy
     @match = Match.find(params[:id])
     @match.destroy
+    flash[:danger] = "Match successfully removed!"
     redirect_to @match
   end
 

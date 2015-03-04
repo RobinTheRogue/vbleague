@@ -183,3 +183,28 @@ aside#sidebar {
 .players {
   background-color: #FFE4E1;
 }
+
+table {border-collapse:collapse;border-spacing:0;border:0 none;}
+/* fix padding of TD to suit your needs */
+table td {border:0 none;padding:2px;text-align:left;}
+
+.colored-cols {
+  width:100%;
+}
+/* improve visual readability for IE8 and below
+.TFtableCol tr{
+  background: #b8d1f3;
+} */
+/*  Define the background color for all the ODD table columns  */
+.col-blue {
+  background: #F0F8FF;
+  /* background: #dae5f4; */
+}
+/*  Define the background color for all the EVEN table columns  */
+.col-pink {
+  background: #FAFAD2;
+}
+.col-yellow {
+  background: #FFE4E1;
+}
+

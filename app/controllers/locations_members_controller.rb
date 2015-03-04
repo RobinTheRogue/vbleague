@@ -5,7 +5,7 @@ class LocationsMembersController < ApplicationController
 
   def create
     LocationMember.create({location_id: params[:id], member_id: params[:member_id]})
-    flash[:notice] = "Contact added to this location!"
+    flash[:success] = "Contact added to this location!"
     redirect_to edit_location_path(params[:id])
   end
 
@@ -13,7 +13,7 @@ class LocationsMembersController < ApplicationController
     location = Location.find(params[:id])
     member = location.members.find(params[:member_id])
     location.members.delete(member)
-    flash[:notice] = "Contact removed from this location!"
+    flash[:danger] = "Contact removed from this location!"
     redirect_to edit_location_path(params[:id])
   end
 end
