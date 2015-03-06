@@ -19,18 +19,24 @@
                   <td class="col-yellow"><%= @teams.find(match.home_team_id).name  %></td>
                   <td>vs.</td>
                   <td class="col-pink"><%= @teams.find(match.away_team_id).name  %></td>
-                  <td>lines:</td>
+                  <td>work:</td>
                   <td class="col-blue"><%= @teams.find(match.score_team_id).name  %></td>
-                  <td>Refs:</td>
-                  <td class="col-yellow"><% up_ref = @refs.find(match.up_ref_id) %>
-                    <%= up_ref.first_name %> <%= up_ref.last_name %></td>
+                  <td>refs:</td>
+                  <td class="col-yellow"><% if match.up_ref_id.nil? %>
+                        <%= "No Ref, Yet" %>
+                    <% else %>
+                        <% up_ref = @refs.find(match.up_ref_id) %>
+                        <%= up_ref.first_name %> <%= up_ref.last_name %>
+                    <% end %></td>
                   <td>&</td>
-                  <td class="col-pink"><% dn_ref = @refs.find(match.dn_ref_id) %>
-                    <%= dn_ref.first_name %> <%= dn_ref.last_name %></td>
+                  <td class="col-pink"><% if match.dn_ref_id.nil? %>
+                        <%= "No Ref, Yet" %>
+                    <% else %>
+                        <% dn_ref = @refs.find(match.dn_ref_id) %>
+                        <%= dn_ref.first_name %> <%= dn_ref.last_name %>
+                    <% end %></td>
               </tr>
         <% end %>
     <% end %>
 <% end %>
 </table>
-<hr/>
-<%= "@matches == #{@courts.inspect}" %>

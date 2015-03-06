@@ -9,6 +9,7 @@ class CreateMatches < ActiveRecord::Migration
       t.integer :score_team_id, null: false
       t.integer :up_ref_id
       t.integer :dn_ref_id
+      t.integer :level_id, null: false
 
       t.timestamps null: false
     end
