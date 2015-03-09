@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #get 'home/index'
 
   get "contactspage" => 'contactspage#index'
-  get "schedule/:id" => 'schedule#index'
+  get "schedule" => 'schedule#index'
   get "forms" => "forms#index"
   post "locations/:id/members" => "locations_members#create"
   delete "locations/:id/members" => "locations_members#destroy"

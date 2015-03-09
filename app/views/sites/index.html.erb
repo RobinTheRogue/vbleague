@@ -1,12 +1,12 @@
 <h4>Play Sites</h4>
-<p>Here is a list of all the locations where matches may be played this season.</p>
+<p>Here is a list of all the locations where matches may be played this season. Click on the site name to bring up a new window with location in Google Maps.</p>
 <hr />
 <% @locations.each do |site| %>
     <p>
       <% if site.url.nil? %>
           <strong><%= site.name %></strong><br/>
       <% else %>
-          <strong><%= link_to site.name, "#{site.url}" %></strong><br/>
+          <strong><%= link_to site.name, "#{site.url}", :target => "_blank" %></strong><br/>
       <% end %>
       <%= site.street %>, <%= site.city %>, <%= site.state %> &nbsp <%= site.zip %><br/>
       <% site.members.each do |contact| %>

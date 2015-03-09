@@ -1,36 +1,3 @@
-<h2><%= "#{@level_name}" %> Schedule</h2>
-<table class="colored-cols">
-<% @match_dates.each do |mdate| %>
-    <%= raw "<thead><tr><th colspan=12>#{mdate.play_date}</th></tr></thead>" %>
-    <% @matches.each do |match| %>
-        <% if mdate.play_date == match.play_date %>
-            <% court = @courts.find(match.court_id)  %>
-              <tr>
-                <td>
-                  </td>
-                  <td class="col-blue"><%= "#{court.location.name} #{court.name}" %></td>
-                  <td><%= match.start_time %></td>
-                  <td class="col-yellow"><%= @teams.find(match.home_team_id).name  %></td>
-                  <td>vs.</td>
-                  <td class="col-pink"><%= @teams.find(match.away_team_id).name  %></td>
-                  <td>work:</td>
-                  <td class="col-blue"><%= @teams.find(match.score_team_id).name  %></td>
-                  <td>refs:</td>
-                <td class="col-yellow"><% if match.up_ref_id.nil? %>
-                      <%= "No Ref, Yet" %>
-                  <% else %>
-                      <% up_ref = @refs.find(match.up_ref_id) %>
-                      <%= up_ref.first_name %> <%= up_ref.last_name %>
-                  <% end %></td>
-                <td>&</td>
-                <td class="col-pink"><% if match.dn_ref_id.nil? %>
-                      <%= "No Ref, Yet" %>
-                  <% else %>
-                      <% dn_ref = @refs.find(match.dn_ref_id) %>
-                      <%= dn_ref.first_name %> <%= dn_ref.last_name %>
-                  <% end %></td>
-              </tr>
-        <% end %>
-    <% end %>
-<% end %>
-</table>
+<h2>2015 Schedules/Standings</h2>
+<p>Click on the links at the bottom of the window to switch between the various schedules and standings.</p>
+<iframe width=1250 height=500 src="https://docs.google.com/spreadsheets/d/1FzGzDXaL58Gi7Z1L0bJL_Gh15Y3EogjYRBlxvbipv_E/pubhtml?widget=true&amp;headers=false"></iframe>
