@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post "teams/:id/members" => "members_teams#create"
   delete "teams/:id/members" => "members_teams#destroy"
   get "sites" => 'sites#index'
+  get "results5a" => "showresults#index5a"
+  get "results3a" => "showresults#index3a"
 
   resources :members do
   end
