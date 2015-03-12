@@ -23,7 +23,6 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="teams">
-      <blockquote>
       <% @teams.each do |team| %>
           <p>
             <strong><%= "#{team.name} (#{Location.find(team.location_id).city})" %></strong><br/>
@@ -35,49 +34,42 @@
             <% end %>
           </p>
       <% end %>
-      </blockquote>
     </div>
     <div role="tabpanel" class="tab-pane" id="advocates">
-      <blockquote>
       <table class="table-striped" cellpadding="5px">
         <tr><th>Name</th><th>email</th><th>phone</th></tr>
       <% @advocates.each do |advo| %>
           <tr>
             <td><%= " #{advo.first_name} #{advo.last_name}" %> </td>
-            <td><%= "#{advo.email}" %> </td>
+            <td class="coaches"><%= "#{advo.email}" %> </td>
             <td><%= "#{advo.phone}" %></td>
           </tr>
       <% end %>
       </table>
-      </blockquote>
     </div>
     <div role="tabpanel" class="tab-pane" id="coaches">
-      <blockquote>
       <table class="table-striped" cellpadding="5px">
         <tr><th>Name</th><th>email</th><th>phone</th></tr>
       <% @coaches.each do |coach| %>
           <tr>
             <td><%= " #{coach.first_name} #{coach.last_name}" %> </td>
-            <td><%= "#{coach.email}" %> </td>
+            <td class="coaches"><%= "#{coach.email}" %> </td>
             <td><%= "#{coach.phone}" %></td>
           </tr>
       <% end %>
       </table>
-      </blockquote>
     </div>
     <div role="tabpanel" class="tab-pane" id="referees">
-      <blockquote>
       <table class="table-striped" cellpadding="5px">
         <tr><th>Name</th><th>email</th><th>phone</th></tr>
       <% @refs.each do |ref| %>
             <tr>
               <td><%= " #{ref.first_name} #{ref.last_name}" %> </td>
-              <td><%= "#{ref.email}" %> </td>
+              <td class="coaches"><%= "#{ref.email}" %> </td>
               <td><%= "#{ref.phone}" %></td>
             </tr>
         <% end %>
       </table>
-      </blockquote>
     </div>
   </div>
 </div>
