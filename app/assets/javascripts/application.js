@@ -16,3 +16,13 @@
 //= require analytics
 //= require bootstrap-sprockets
 //= require_tree .
+
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+$('#myTab a[href="#teams"]').tab('show') // Select tab by name
+$('#myTab a[href="#advocates"]').tab('show') // Select tab by name
+$('#myTab a[href="#coaches"]').tab('show') // Select tab by name
+$('#myTab a[href="#referees"]').tab('show') // Select tab by name

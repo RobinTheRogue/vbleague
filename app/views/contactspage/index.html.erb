@@ -9,18 +9,79 @@
   TBA, 3A Representative - TBD<br/>
   Bill Cavanaugh, Officials Representative: (303)734-9922 <a href="mailto:BILL41CAVA@msn.com">BILL41CAVA@msn.com</a>
 </p>
-<% if !@teams.nil? %>
+<% if !@refs.nil? %>
   <hr/>
-  <%= raw("<h3>2015 Teams</h3>") %>
-    <% @teams.each do |team| %>
-        <p>
-        <strong><%= "#{team.name} (#{Location.find(team.location_id).city})" %></strong><br/>
-        <% team.members.where("(role = 'Coach')").each do |coach| %>
-          Coach: <%= " #{coach.first_name} #{coach.last_name} - #{coach.email}" %><br/>
+  <%= raw("<h3>2015 Contact Information</h3>") %>
+<div role="tabpanel">
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#teams" aria-controls="teams" role="tab" data-toggle="tab">Teams</a></li>
+      <li role="presentation"><a href="#advocates" aria-controls="advocates" role="tab" data-toggle="tab">Advocates</a></li>
+      <li role="presentation"><a href="#coaches" aria-controls="coaches" role="tab" data-toggle="tab">Coaches</a></li>
+      <li role="presentation"><a href="#referees" aria-controls="referees" role="tab" data-toggle="tab">Referees</a></li>
+    </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="teams">
+      <blockquote>
+      <% @teams.each do |team| %>
+          <p>
+            <strong><%= "#{team.name} (#{Location.find(team.location_id).city})" %></strong><br/>
+            <% team.members.where("(role = 'Coach')").each do |coach| %>
+                Coach: <%= " #{coach.first_name} #{coach.last_name} - #{coach.email}" %><br/>
+            <% end %>
+            <% team.members.where("(role = 'Advocate')").each do |advocate| %>
+                Advocate: <%= " #{advocate.first_name} #{advocate.last_name} - #{advocate.email}" %><br/>
+            <% end %>
+          </p>
+      <% end %>
+      </blockquote>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="advocates">
+      <blockquote>
+      <table class="table-striped">
+        <tr><th>Name</th><th>email</th><th>phone</th></tr>
+      <% @advocates.each do |advo| %>
+          <tr>
+            <td><%= " #{advo.first_name} #{advo.last_name}" %></td>
+            <td><%= "#{advo.email}" %></td>
+            <td><%= "#{advo.phone}" %></td>
+          </tr>
+      <% end %>
+      </table>
+      </blockquote>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="coaches">
+      <blockquote>
+      <table class="table-striped">
+        <tr><th>Name</th><th>email</th><th>phone</th></tr>
+      <% @coaches.each do |coach| %>
+          <tr>
+            <td><%= " #{coach.first_name} #{coach.last_name}" %></td>
+            <td><%= "#{coach.email}" %></td>
+            <td><%= "#{coach.phone}" %></td>
+          </tr>
+      <% end %>
+      </table>
+      </blockquote>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="referees">
+      <blockquote>
+      <table class="table-striped">
+        <tr><th>Name</th><th>email</th><th>phone</th></tr>
+      <% @refs.each do |ref| %>
+            <tr>
+              <td><%= " #{ref.first_name} #{ref.last_name}" %></td>
+              <td><%= "#{ref.email}" %></td>
+              <td><%= "#{ref.phone}" %></td>
+            </tr>
         <% end %>
-        <% team.members.where("(role = 'Advocate')").each do |advocate| %>
-          Advocate: <%= " #{advocate.first_name} #{advocate.last_name} - #{advocate.email}" %><br/>
-        <% end %>
-        </p>
-    <% end %>
+      </table>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+
+
 <% end %>
