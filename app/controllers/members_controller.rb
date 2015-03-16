@@ -4,6 +4,9 @@ class MembersController < ApplicationController
   end
 
   def index
+    @advocates = Member.where("(role = 'Advocate')").order(last_name: :asc)
+    @coaches = Member.where("(role = 'Coach')").order(last_name: :asc)
+    @refs = Member.where("(role = 'Referee')").order(last_name: :asc)
     @member = Member.all
   end
 
