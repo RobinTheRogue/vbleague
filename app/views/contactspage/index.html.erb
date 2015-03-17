@@ -6,7 +6,7 @@
   Ann Rhee, Scheduler: (303)667.0116 <a href="mailto:acsrhee@comcast.net">acsrhee@comcast.net</a><br/>
   Scott Nugent, Secretary: (303)999-5223 <a href="mailto:vbcoachnuge@gmail.com">vbcoachnuge@gmail.com</a><br/>
   Nancy Holmes, 5A Representative: (719)590-1380 <a href="mailto:bnholm@juno.com">bnholm@juno.com</a><br/>
-  TBA, 3A Representative - TBD<br/>
+  David Molchan, 3A Representative: (719)306-2076 <a href="mailto:david.molchan@sbcglobal.net">david.molchan@sbcglobal.net</a><br/>
   Bill Cavanaugh, Officials Representative: (303)734-9922 <a href="mailto:BILL41CAVA@msn.com">BILL41CAVA@msn.com</a>
 </p>
 <% if !@refs.nil? %>
@@ -36,36 +36,36 @@
       <% end %>
     </div>
     <div role="tabpanel" class="tab-pane" id="advocates">
-      <table class="table-striped" cellpadding="5px">
+      <table class="table-striped" cellpadding="5px" width="500">
         <tr><th>Name</th><th>email</th><th>phone</th></tr>
       <% @advocates.each do |advo| %>
           <tr>
             <td><%= " #{advo.first_name} #{advo.last_name}" %> </td>
-            <td class="coaches"><%= "#{advo.email}" %> </td>
+            <td><%= "#{advo.email}" %> </td>
             <td><%= "#{advo.phone}" %></td>
           </tr>
       <% end %>
       </table>
     </div>
     <div role="tabpanel" class="tab-pane" id="coaches">
-      <table class="table-striped" cellpadding="5px">
+      <table class="table-striped" cellpadding="5px" width="500">
         <tr><th>Name</th><th>email</th><th>phone</th></tr>
       <% @coaches.each do |coach| %>
           <tr>
             <td><%= " #{coach.first_name} #{coach.last_name}" %> </td>
-            <td class="coaches"><%= "#{coach.email}" %> </td>
+            <td><%= "#{coach.email}" %> </td>
             <td><%= "#{coach.phone}" %></td>
           </tr>
       <% end %>
       </table>
     </div>
     <div role="tabpanel" class="tab-pane" id="referees">
-      <table class="table-striped" cellpadding="5px">
+      <table class="table-striped" cellpadding="5px" width="500">
         <tr><th>Name</th><th>email</th><th>phone</th></tr>
       <% @refs.each do |ref| %>
             <tr>
               <td><%= " #{ref.first_name} #{ref.last_name}" %> </td>
-              <td class="coaches"><%= "#{ref.email}" %> </td>
+              <td><%= "#{ref.email}" %> </td>
               <td><%= "#{ref.phone}" %></td>
             </tr>
         <% end %>
